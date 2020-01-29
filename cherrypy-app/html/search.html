@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% block css_block %}
+<style>
+
+th, td {
+    text-align: center;
+}
+
+</style>
+{% endblock %}
+
+{% block body %}
+<div class="navbar-fixed">
+  <nav class="blue darken-4">
+    <div class="nav-wrapper">
+      <form action="/search" method="GET">
+        <div class="input-field">
+          <input id="search" type="search" name="query" placeholder="Search By Name" required />
+          <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+          <i class="material-icons">close</i>
+        </div>
+      </form>
+    </div>
+  </nav>
+</div>
+<div class="container">
+  <h2>{{ data|length }} search results for &quot;{{ search_query }}&quot;</h2>
+  <table>
+    <tr>
+      <th>#</th>
+      <th>CODE</th>
+      <th>Name</th>
+      <th>Open</th>
+      <th>High</th>
+      <th>Low</th>
+      <th>Close</th>
+    </tr>
+    {% for datum in data %}
+    <tr>
+      <td>{{ loop.index }}</td>
+      <td>{{ datum.code }}</td>
+      <td>{{ datum.name }}</td>
+      <td>{{ '%0.2f' % datum.open }}</td>
+      <td>{{ '%0.2f' % datum.high }}</td>
+      <td>{{ '%0.2f' % datum.low }}</td>
+      <td>{{ '%0.2f' % datum.close }}</td>
+    </tr>
+    {% else %}
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>No results.</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    {% endfor %}
+  </table>
+</div>
+<div class="fixed-action-btn">
+  <a href="/" class="btn-floating btn-large blue">
+    <i class="large material-icons">home</i>
+  </a>
+</div>
+{% endblock %}

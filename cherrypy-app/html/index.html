@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% block css_block %}
+<style>
+
+* {
+    color: white;
+}
+
+body {
+    background-color: #1e88e5;
+}
+
+th, td {
+    text-align: center;
+}
+
+table, td, th {
+    border: 2px solid white;
+}
+
+table {
+    margin-bottom: 10px;
+}
+
+.star-icon {
+    float: left;
+}
+
+.bse-left-icon {
+    float: left;
+}
+
+.bse-right-icon {
+    float: right;
+}
+
+</style>
+{% endblock %}
+
+{% block body %}
+<div class="navbar-fixed">
+  <nav class="blue darken-4">
+    <div class="nav-wrapper">
+      <form action="/search" method="GET">
+        <div class="input-field">
+          <input id="search" type="search" name="query" placeholder="Search By Name" required />
+          <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+          <i class="material-icons">close</i>
+        </div>
+      </form>
+    </div>
+  </nav>
+</div>
+<div class="container">
+  <div class="row"><div class="col s3"></div><div class="col s6"><h1 class="center"><i class="bse-left-icon material-icons medium">trending_up</i> BSE Stocks <i class="bse-right-icon material-icons medium">trending_down</i></h1></div></div>
+  <h2><i class="star-icon material-icons medium">star</i>&nbsp;&nbsp;&nbsp;&nbsp;Top 10 Highest Closing Stocks</h2>
+  <table>
+    <tr>
+      <th>#</th>
+      <th>CODE</th>
+      <th>Name</th>
+      <th>Open</th>
+      <th>High</th>
+      <th>Low</th>
+      <th>Close</th>
+    </tr>
+    {% for datum in data %}
+    <tr>
+      <td>{{ loop.index }}</td>
+      <td>{{ datum.code }}</td>
+      <td>{{ datum.name }}</td>
+      <td>{{ '%0.2f' % datum.open }}</td>
+      <td>{{ '%0.2f' % datum.high }}</td>
+      <td>{{ '%0.2f' % datum.low }}</td>
+      <td>{{ '%0.2f' % datum.close }}</td>
+    </tr>
+  {% endfor %}
+  </table>
+</div>
+{% endblock %}
