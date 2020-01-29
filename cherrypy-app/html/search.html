@@ -45,7 +45,7 @@ th, td {
       <th>Low</th>
       <th>Close</th>
     </tr>
-    {% for datum in data %}
+  {% for datum in data %}
     <tr>
       <td>{{ loop.index }}</td>
       <td>{{ datum.code }}</td>
@@ -55,7 +55,7 @@ th, td {
       <td>{{ '%0.2f' % datum.low }}</td>
       <td>{{ '%0.2f' % datum.close }}</td>
     </tr>
-    {% else %}
+  {% else %}
     <tr>
       <td></td>
       <td></td>
@@ -65,7 +65,7 @@ th, td {
       <td></td>
       <td></td>
     </tr>
-    {% endfor %}
+  {% endfor %}
   </table>
 </div>
 <div class="fixed-action-btn">
