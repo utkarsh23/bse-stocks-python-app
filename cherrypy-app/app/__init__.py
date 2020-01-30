@@ -38,7 +38,7 @@ class BSEStocks(object):
         template = env.get_template('search.html')
         min_r = '[' + query.upper()
         max_r = '[' + query.upper() + '\xff'
-        stocks = redis_client.zrangebylex('searchname', min_r, max_r, start=0, num=25)
+        stocks = redis_client.zrangebylex('searchname', min_r, max_r)
         data = [{} for el in stocks]
         for ind, stock in enumerate(stocks):
             stock_no = redis_client.zscore('name', stock.decode())
